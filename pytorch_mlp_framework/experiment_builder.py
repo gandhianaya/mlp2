@@ -152,7 +152,8 @@ class ExperimentBuilder(nn.Module):
         ########################################
         for name, param in named_parameters:
             if param.requires_grad and 'bias' not in name:
-                layers.append(name)
+                layer_name = name.split('.')[0]  # Get the first part (layer name)
+                layers.append(layer_name)
                 grad_mean = param.grad.abs().mean()
                 all_grads.append(grad_mean.item())
         ########################################
