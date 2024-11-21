@@ -144,25 +144,28 @@ class ExperimentBuilder(nn.Module):
         """
         all_grads = []
         layers = []
-
         
         """
-        Complete the code in the block below to collect absolute mean of the gradients for each layer in all_grads with the layer names in layers.
+        Complete the code in the block below to collect absolute mean of the gradients for each layer in all_grads with the             layer names in layers.
         """
         ########################################
+        #TODO write your code here
         for name, param in named_parameters:
-            if param.requires_grad and 'bias' not in name:
-                layer_name = name.split('.')[0]  # Get the first part (layer name)
-                layers.append(layer_name)
-                grad_mean = param.grad.abs().mean()
-                all_grads.append(grad_mean.item())
+            if param.requires_grad and param.grad is not None and "bias" not in name:
+                # Compute the absolute mean of the gradients
+                grad_mean = param.grad.abs().mean().item()
+                all_grads.append(grad_mean)
+                layers.append(name)
         ########################################
+            
         
         plt = self.plot_func_def(all_grads, layers)
-    
+        
         return plt
     
-       
+    
+    
+    
     def run_train_iter(self, x, y):
         
         self.train()  # sets model to training mode (in case batch normalization or other methods have different procedures for training and evaluation)
