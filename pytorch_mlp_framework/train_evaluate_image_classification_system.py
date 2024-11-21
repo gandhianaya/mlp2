@@ -44,12 +44,12 @@ test_data_loader = DataLoader(test_data, batch_size=args.batch_size, shuffle=Tru
 if args.block_type == 'conv_block':
     processing_block_type = ConvolutionalProcessingBlock
     dim_reduction_block_type = ConvolutionalDimensionalityReductionBlock
-elif args.block_type == 'bn_block':  # Batch Normalization block
-    processing_block_type = ConvolutionalBNBlock
-    dim_reduction_block_type = ConvolutionalBNDimReductionBlock  
-elif args.block_type == 'bnrc_block':  # Residual block
-    processing_block_type = ConvolutionalResidualBlock
-    dim_reduction_block_type = ConvolutionalBNDimReductionBlock
+elif args.block_type == 'BNRC_conv_block':
+    processing_block_type = BNRCConvolutionalProcessingBlock
+    dim_reduction_block_type = BNConvolutionalDimensionalityReductionBlock
+elif args.block_type == 'BN_conv_block':
+    processing_block_type = BNConvolutionalProcessingBlock
+    dim_reduction_block_type = BNConvolutionalDimensionalityReductionBlock
 elif args.block_type == 'empty_block':
     processing_block_type = EmptyBlock
     dim_reduction_block_type = EmptyBlock
