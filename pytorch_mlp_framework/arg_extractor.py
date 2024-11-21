@@ -18,7 +18,6 @@ def get_args():
     parser = argparse.ArgumentParser(
         description='Welcome to the MLP course\'s Pytorch training and inference helper script')
 
-    # Existing arguments
     parser.add_argument('--batch_size', nargs="?", type=int, default=100, help='Batch_size for experiment')
     parser.add_argument('--continue_from_epoch', nargs="?", type=int, default=-1, help='Epoch you want to continue training from while restarting an experiment')
     parser.add_argument('--seed', nargs="?", type=int, default=7112018,
@@ -46,12 +45,12 @@ def get_args():
                         help='A flag indicating whether we will use GPU acceleration or not')
     parser.add_argument('--weight_decay_coefficient', nargs="?", type=float, default=0,
                         help='Weight decay to use for Adam')
-    parser.add_argument('--learning_rate', nargs="?", type=float, default=0.001, help='Learning rate for optimizer')
-
-    # Add block type options for new blocks
+   #Added args
+    parser.add_argument('--lr', nargs="?", type=float, default=0.001, help='Learning rate')
     parser.add_argument('--block_type', type=str, default='conv_block',
+                        choices=['conv_block', 'bn_block', 'bnrc_block'],
                         help='Type of convolutional blocks to use in our network. '
-                             'Available options: conv_block, empty_block, custom_bn_block, custom_residual_block, custom_bn_dim_reduction_block')
+                             '(conv_block, empty_block, bn_block, bnrc_block,bn_dim_reduction_block)')
 
     args = parser.parse_args()
     print(args)
